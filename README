@@ -1,0 +1,25 @@
+Grupo 4
+Camila Cid - 201641016-3
+Sebastian Echeverria - 202073502-6
+
+Para ejecutar el codigo se deben seguir los siguientes comandos:
+  - docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management (Inicia conexion asincrona)
+  Ejecutar Director.go (Ejecutar dentro de la carpeta ./director)
+    - docker build -t director -f Dockerfile . (Construye la imagen Docker)
+    - docker run -d --name director_container director (Inicia el contenedor)
+    - go run Director.go (Ejecuta el archivo .go)
+
+  Ejecutar DoshBank (Ejecutar dentro de la carpeta ./DoshBank)
+    - docker build -t doshbank -f Dockerfile . (Construye la imagen Docker)
+    - docker run -d --name doshbank_container doshbank
+    - go run doshbank.go
+  
+  Ejecutar NameNode (Ejecutar dentro de la carpeta ./namenode)
+    - docker build -t namenode -f Dockerfile . (Construye la imagen Docker)
+    - docker run -d --name namenode_container namenode
+    - go run namenode.go
+
+  Ejecutar DataNode (Ejecutar dentro de la carpeta ./datanode)
+    - docker build -t datanode -f Dockerfile . (Construye la imagen Docker)
+    - docker run -d --name datanode_container datanode
+    - go run datanode.go
