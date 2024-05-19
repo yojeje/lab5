@@ -1,0 +1,14 @@
+FROM golang:1.21.1-alpine
+
+WORKDIR /usr/src/app
+
+COPY . .
+
+# Compilar la aplicación
+RUN go build -o Director Director.go
+
+# Exponer el puerto en el que escucha el servidor gRPC
+EXPOSE 50051
+
+# Ejecutar la aplicación compilada
+CMD ["./Director"]

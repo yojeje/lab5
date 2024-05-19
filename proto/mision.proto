@@ -1,0 +1,88 @@
+syntax = "proto3";
+option go_package = "./proto";
+
+package mission;
+
+service Director {
+  rpc Preparacion (PreparacionRequest) returns (PreparacionResponse);
+  rpc EnviarDecision (DecisionRequest) returns (DecisionResponse);
+  rpc InformarEliminacion (EliminacionRequest) returns (EliminacionResponse);
+}
+
+service DoshBank {
+  rpc RegistrarEliminacion (RegistroRequest) returns (RegistroResponse);
+  rpc ObtenerMonto (MontoRequest) returns (MontoResponse);
+}
+
+service NameNode {
+  rpc RegistrarDecision (DecisionRequest) returns (DecisionResponse);
+  rpc ObtenerDecision (ObtenerDecisionRequest) returns (ObtenerDecisionResponse);
+}
+
+service DataNode {
+  rpc GuardarDecision (GuardarDecisionRequest) returns (GuardarDecisionResponse);
+  rpc ObtenerDecision (ObtenerDecisionRequest) returns (ObtenerDecisionResponse);
+}
+
+message PreparacionRequest {
+  int32 id = 1;
+}
+
+message PreparacionResponse {
+  bool success = 1;
+}
+
+message DecisionRequest {
+  int32 id = 1;
+  int32 piso = 2;
+  int32 decision = 3;
+}
+
+message DecisionResponse {
+  string dataNodeIp = 1;
+}
+
+message EliminacionRequest {
+  int32 id = 1;
+  int32 piso = 2;
+}
+
+message EliminacionResponse {
+  bool success = 1;
+}
+
+message RegistroRequest {
+  int32 id = 1;
+  int32 piso = 2;
+}
+
+message RegistroResponse {
+  int64 montoActual = 1;
+}
+
+message MontoRequest {
+  int32 id = 1;
+}
+
+message MontoResponse {
+  int64 monto = 1;
+}
+
+message GuardarDecisionRequest {
+  int32 id = 1;
+  int32 piso = 2;
+  int32 decision = 3;
+}
+
+message GuardarDecisionResponse {
+  bool success = 1;
+}
+
+message ObtenerDecisionRequest {
+  int32 id = 1;
+  int32 piso = 2;
+}
+
+message ObtenerDecisionResponse {
+  int32 decision = 1;
+}
